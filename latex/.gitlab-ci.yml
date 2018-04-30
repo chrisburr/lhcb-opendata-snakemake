@@ -1,0 +1,12 @@
+# Build the document using latexmk in a Docker container
+# Taken from: https://gitlab.com/gitlab-org/gitlab-ci-yml/blob/270cdc619f2355d7e88d94e4f7ead3bebdff07fd/LaTeX.gitlab-ci.yml
+# image: blang/latex
+image: gitlab-registry.cern.ch/olupton/cc7-ci-texlive-dockerfile
+
+build:
+  script:
+    - make
+  artifacts:
+    paths:
+      # Should match BUILDDIR in the Makefile
+      - "build/*.pdf"

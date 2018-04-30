@@ -1,0 +1,27 @@
+% This contains the boilerplate stuff used for feynman diagram generation
+\documentclass[12pt,a4paper]{article}
+
+% Setup various variables that control behaviour
+\input{settings}
+
+\def\paperauthors{LHCb}
+\def\paperasciititle{LHCb feynman diagrams}
+\def\papertitle{LHCb feynman diagrams}
+\def\papersubtitle{Modern edition}
+\def\paperkeywords{}
+\def\papercopyright{CERN on behalf of the LHCb collaboration}
+\def\paperlicence{CC-BY-4.0}
+\def\paperlicenceurl{https://creativecommons.org/licenses/by/4.0/}
+
+\usepackage{feynmp}
+\usepackage{nopageno}
+\DeclareGraphicsRule{*}{mps}{*}{}
+
+\input{preamble}
+
+\edef\mffilename{MF-\feynmanname}
+\begin{document}
+  \begin{fmffile}{\mffilename}
+    \input{diagrams/\feynmanname}
+  \end{fmffile}
+\end{document}

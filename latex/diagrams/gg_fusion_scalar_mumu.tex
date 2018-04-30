@@ -1,0 +1,19 @@
+\fmfframe(0,25)(8,15){
+\begin{fmfgraph*}(150,50)
+  \fmfstraight
+  \fmfright{mubot,mutop}
+  \fmfleft{gbot,gtop}
+  \fmfv{label=\Pg}{gtop}
+  \fmfv{label=\Pg}{gbot}
+  \fmfv{label=\mup}{mubot}
+  \fmfv{label=\mun}{mutop}
+  \fmf{phantom,tension=0.25}{gtop,qright,gbot}
+  \fmf{dashes,label=\Pphi,label.side=left}{qright,muv}
+  \fmf{fermion}{mubot,muv,mutop}
+  \fmf{phantom}{mubot,qbot,gbot}
+  \fmf{phantom}{mutop,qtop,gtop}
+  \fmf{gluon}{gbot,qbot}
+  \fmf{gluon}{gtop,qtop}
+  \fmf{fermion,tension=0,label=\tquark,,\,,\bquark}{qright,qbot}
+  \fmf{fermion,tension=0}{qbot,qtop,qright}
+\end{fmfgraph*}}

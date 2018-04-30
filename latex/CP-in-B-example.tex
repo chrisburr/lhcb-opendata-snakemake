@@ -1,0 +1,259 @@
+%\pdfoutput=1
+% Uncomment line above if submitting to arXiv and using pdflatex
+
+% $Id$
+% ============================================================================
+% Purpose: Template for LHCb documents
+% Authors: Tomasz Skwarnicki, Roger Forty, Ulrik Egede
+% Created on: 2010-09-24
+% ============================================================================
+\documentclass[12pt,a4paper]{article}
+%%\documentclass[12pt,letter]{article}
+% For two column text, add "twocolumn" as an option to the document
+% class. Also uncomment the two "onecolumn" and "twocolumn" lines
+% around the title page below.
+
+% Setup various variables that control behaviour
+\input{settings}
+
+% Define titles and authors here. It will then be used both in metadata and in
+% what is printed on the front page.
+\ifthenelse{\boolean{paperconf}}{%
+\def\paperauthors{LHCb collaboration}
+}{%
+\def\paperauthors{A.~N.~Other}
+}
+\def\paperasciititle{Template for writing LHCb papers} % Set ASCII title here
+\def\papertitle{Template for writing \lhcb papers} % Latex formatted title
+\def\papersubtitle{Modern edition}
+\def\paperkeywords{{High Energy Physics}, {LHCb}} % Comma separated list
+\def\papercopyright{CERN on behalf of the LHCb collaboration}
+\def\paperlicence{CC-BY-4.0}
+\def\paperlicenceurl{https://creativecommons.org/licenses/by/4.0/}
+
+
+\input{preamble}
+\usepackage{longtable} % only for template; not usually to be used in PAPERs
+\usepackage{subcaption}
+\usepackage{siunitx}
+
+\begin{document}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% Title     %%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\setcounter{footnote}{1}
+
+% %%%%%%% CHOOSE TITLE PAGE--------
+%\onecolumn
+%\input{title-LHCb-INT}
+%\input{title-LHCb-ANA}
+%\input{title-LHCb-CONF}
+\input{title-LHCb-PAPER}
+%\twocolumn
+% %%%%%%%%%%%%% ---------
+
+\renewcommand{\thefootnote}{\arabic{footnote}}
+\setcounter{footnote}{0}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%  Table of Content   %%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% Uncomment next 2 lines if desired
+%\tableofcontents
+%\cleardoublepage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% Main text %%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{plain} % restore page numbers for the main text
+\setcounter{page}{1}
+\pagenumbering{arabic}
+
+%% Uncomment during review phase.
+%% Comment before a final submission.
+\linenumbers
+
+% You can include short sections directly in the main tex file.
+% However, for larger papers it is desirable to split the text into
+% several semiautonomous files, which can be revised independently.
+% This is especially useful when developing a document in
+% collaboration with several people, since then different parts can be
+% edited independently.  This type of file organization is shown here.
+%
+
+% This input will build the 'guidelines' document, containing general
+% information on how to write an LHCb document
+% \input{guidelines/guidelines}
+
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{$B^\pm \rightarrow K^\pm K^\pm K^\mp$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\FloatBarrier
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.5\textwidth]{output/plots/B2KKK/B_M.pdf}
+  \caption{Mass plot}
+\end{figure}
+
+\begin{figure}[ht]
+  \centering
+  \begin{subfigure}[t]{0.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{output/plots/B2KKK/Bp_dalitz.pdf}
+    \caption{$B^+$}
+  \end{subfigure}%
+  ~
+  \begin{subfigure}[t]{0.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{output/plots/B2KKK/Bm_dalitz.pdf}
+    \caption{$B^-$}
+  \end{subfigure}%
+  \caption{Dalitz plots for the signal region without background subtraction}
+\end{figure}
+
+\FloatBarrier
+\input{output/latex/B2KKK/integrated.tex}
+
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{$B^\pm \rightarrow K^\pm K^\pm \pi^\mp$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\FloatBarrier
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.5\textwidth]{output/plots/B2KKPi/B_M.pdf}
+  \caption{Mass plot}
+\end{figure}
+
+\begin{figure}[ht]
+  \centering
+  \begin{subfigure}[t]{0.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{output/plots/B2KKPi/Bp_dalitz.pdf}
+    \caption{$B^+$}
+  \end{subfigure}%
+  ~
+  \begin{subfigure}[t]{0.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{output/plots/B2KKPi/Bm_dalitz.pdf}
+    \caption{$B^-$}
+  \end{subfigure}%
+  \caption{Dalitz plots for the signal region without background subtraction}
+\end{figure}
+
+\FloatBarrier
+\input{output/latex/B2KKPi/integrated.tex}
+
+
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{$B^\pm \rightarrow K^\pm \pi^\pm \pi^\mp$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\FloatBarrier
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.5\textwidth]{output/plots/B2KPiPi/B_M.pdf}
+  \caption{Mass plot}
+\end{figure}
+
+\begin{figure}[ht]
+  \centering
+  \begin{subfigure}[t]{0.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{output/plots/B2KPiPi/Bp_dalitz.pdf}
+    \caption{$B^+$}
+  \end{subfigure}%
+  ~
+  \begin{subfigure}[t]{0.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{output/plots/B2KPiPi/Bm_dalitz.pdf}
+    \caption{$B^-$}
+  \end{subfigure}%
+  \caption{Dalitz plots for the signal region without background subtraction}
+\end{figure}
+
+\FloatBarrier
+\input{output/latex/B2KPiPi/integrated.tex}
+
+
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{$B^\pm \rightarrow \pi^\pm \pi^\pm \pi^\mp$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\FloatBarrier
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.5\textwidth]{output/plots/B2PiPiPi/B_M.pdf}
+  \caption{Mass plot}
+\end{figure}
+
+\begin{figure}[ht]
+  \centering
+  \begin{subfigure}[t]{0.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{output/plots/B2PiPiPi/Bp_dalitz.pdf}
+    \caption{$B^+$}
+  \end{subfigure}%
+  ~
+  \begin{subfigure}[t]{0.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{output/plots/B2PiPiPi/Bm_dalitz.pdf}
+    \caption{$B^-$}
+  \end{subfigure}%
+  \caption{Dalitz plots for the signal region without background subtraction}
+\end{figure}
+
+\FloatBarrier
+\input{output/latex/B2PiPiPi/integrated.tex}
+
+
+% This input will build the actual document of interest, such as an INT or
+% PAPER
+% \input{sections/sections}
+
+\clearpage
+\setboolean{inbibliography}{true}
+\setboolean{uprightparticles}{false}
+\sisetup{detect-all,scientific-notation=false}
+\printbibliography[title=References,heading=bibintoc]
+
+\newpage
+
+% Author List
+%  You need to get a new author list!
+
+\ifthenelse{\boolean{paperconf}}{%
+
+\newpage
+\input{LHCb_authorlist.tex}
+
+The author list for journal publications is generated from the
+Membership Database shortly after `approval to go to paper' has been
+given.  It will be sent to you by email shortly after a paper number
+has been assigned.  The author list should be included already at
+first circulation, to allow new members of the collaboration to verify
+that they have been included correctly.  Occasionally a misspelled
+name is corrected, or associated institutions become full members.
+Therefore an updated author list will be sent to you after the final
+EB review of the paper.  In case line numbering doesn't work well
+after including the authorlist, try moving the \texttt{\textbackslash{}bigskip} after
+the last author to a separate line.
+
+
+The authorship for Conference Reports should be ``The LHCb
+collaboration'', with a footnote giving the name(s) of the contact
+author(s), but without the full list of collaboration names.
+
+}{}
+\end{document}

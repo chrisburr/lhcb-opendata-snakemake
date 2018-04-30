@@ -1,0 +1,155 @@
+% THis file contains all the default packages and modifications for
+% LHCb formatting
+
+%% %%%%%%%%%%%%%%%%%%
+%%  Page formatting
+%% %%%%%%%%%%%%%%%%%%
+%%\usepackage[margin=1in]{geometry}
+\usepackage[top=1in, bottom=1.25in, left=1in, right=1in]{geometry}
+\usepackage[utf8]{inputenc}
+
+% fallback for manual settings... uncomment if the geometry package is not available
+%
+%\voffset=-11mm
+%\textheight=220mm
+%\textwidth=160mm
+%\oddsidemargin=0mm
+%\evensidemargin=0mm
+
+\columnsep=5mm
+\addtolength{\belowcaptionskip}{0.5em}
+
+\renewcommand{\textfraction}{0.01}
+\renewcommand{\floatpagefraction}{0.99}
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.9}
+
+% Allow the page size to vary a bit ...
+\raggedbottom
+% To avoid Latex to be too fussy with line breaking ...
+\sloppy
+
+%% %%%%%%%%%%%%%%%%%%%%%%%
+%% Packages to be used
+%% %%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{microtype}
+\usepackage{lineno}  % for line numbering during review
+\usepackage{xspace} % To avoid problems with missing or double spaces after
+                    % predefined symbold
+\usepackage{caption} %these three command get the figure and table captions automatically small
+\renewcommand{\captionfont}{\small}
+\renewcommand{\captionlabelfont}{\small}
+
+%% Graphics
+\usepackage{graphicx}  % to include figures (can also use other packages)
+\usepackage{color}
+\usepackage{colortbl}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{rotating} % define environment sidewaystable to rotate tables
+\usepackage{placeins} %Define \FloatBarrier
+
+\graphicspath{{./figures/},{./generated/}} % Make Latex search fig subdir for figures, should
+                                           % match FIGDIR and GENDIR values in Makefile
+
+
+%% Math
+\usepackage{xfrac} % Adds \sfrac
+\usepackage{amsmath} % Adds a large collection of math symbols
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{upgreek} % Adds in support for greek letters in roman typeset
+
+%% fix to allow peaceful coexistence of line numbering and
+%% mathematical objects
+%% http://www.latex-community.org/forum/viewtopic.php?f=5&t=163
+%%
+\newcommand*\patchAmsMathEnvironmentForLineno[1]{%
+\expandafter\let\csname old#1\expandafter\endcsname\csname #1\endcsname
+\expandafter\let\csname oldend#1\expandafter\endcsname\csname
+end#1\endcsname
+ \renewenvironment{#1}%
+   {\linenomath\csname old#1\endcsname}%
+   {\csname oldend#1\endcsname\endlinenomath}%
+}
+\newcommand*\patchBothAmsMathEnvironmentsForLineno[1]{%
+  \patchAmsMathEnvironmentForLineno{#1}%
+  \patchAmsMathEnvironmentForLineno{#1*}%
+}
+\AtBeginDocument{%
+\patchBothAmsMathEnvironmentsForLineno{equation}%
+\patchBothAmsMathEnvironmentsForLineno{align}%
+\patchBothAmsMathEnvironmentsForLineno{flalign}%
+\patchBothAmsMathEnvironmentsForLineno{alignat}%
+\patchBothAmsMathEnvironmentsForLineno{gather}%
+\patchBothAmsMathEnvironmentsForLineno{multline}%
+\patchBothAmsMathEnvironmentsForLineno{eqnarray}%
+}
+
+\usepackage{siunitx}
+\sisetup{
+  % Use '10^{n}' notation
+  scientific-notation=true,
+  % Display uncertainties as '1.23 \pm 0.05' rather than '1.23(5)'
+  separate-uncertainty=true,
+  % Separate thousands with a comma, with numbers with more than four digits
+  group-separator = {,},
+  % Separate ranges with an en-dash
+  range-phrase=--,
+  % Only give the unit on the last value
+  range-units=single
+}
+
+% Get hyperlinks to captions and in references.
+% These do not work with revtex. Use "hypertext" as class option instead.
+\usepackage{hyperxmp}
+\usepackage[pdftex,
+            pdfauthor={\paperauthors},
+            pdftitle={\paperasciititle},
+            pdfsubject={\papersubtitle},
+            pdfkeywords={\paperkeywords},
+            pdfcopyright={Copyright (C) \papercopyright},
+            pdflicenseurl={\paperlicenceurl}]{hyperref}
+\usepackage[all]{hypcap} % Internal hyperlinks to floats.
+\usepackage[backend=biber,style=phys,eprint=true,hyperref=true,biblabel=brackets]{biblatex}
+\DefineBibliographyStrings{english}{%
+  andothers = {\etal} % use italic et. al.
+}
+\DeclareFieldFormat*{title}{\textit{#1}} % put paper titles in italics
+\DeclareSourcemap{
+  \maps[datatype=bibtex,overwrite=true]{
+    \map{
+      \step[fieldset=eprintclass,fieldvalue=] % don't show e.g. [hep-ex] in the bibliography
+    }
+    \map{
+      \step[fieldsource=collaboration,final=true] % only do anything if the collaboration is set
+      \step[fieldset=usera,origfieldval,final=true]
+    }
+    \map{
+      \step[fieldsource=note,final=true] % only do anything if there's a note
+      \step[fieldset=addendum,origfieldval] % make the note an addendum
+      \step[fieldset=note,fieldvalue=] % remove the note
+    }
+  }
+}
+\renewbibmacro*{author}{%
+  \iffieldundef{usera}{%
+    \printnames{author} % A. Author et. al.
+  }{%
+    \printfield{usera}, \printnames{author} % COLLABORATION, A. Author et. al.
+%    \printfield{usera} % COLLABORATION
+  }
+}
+\addbibresource{bibliography/refs.bib}
+\addbibresource{bibliography/main.bib}
+\addbibresource{bibliography/extras.bib}
+\addbibresource{bibliography/LHCb-DP.bib}
+\addbibresource{bibliography/LHCb-TDR.bib}
+\addbibresource{bibliography/LHCb-CONF.bib}
+\addbibresource{bibliography/LHCb-PAPER.bib}
+
+\input{lhcb-symbols-def} % Add in the predefined LHCb symbols
+\input{my-symbols-def} % Add in user-defined symbols
+
+% Automatic formatting of references
+\usepackage[nameinlink,capitalise]{cleveref}

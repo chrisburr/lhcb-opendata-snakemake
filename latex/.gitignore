@@ -1,0 +1,4 @@
+# Ignore all build artefacts
+build
+generated
+.DS_Store

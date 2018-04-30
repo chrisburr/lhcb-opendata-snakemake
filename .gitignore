@@ -1,0 +1,15 @@
+# Python files
+.snakemake/
+*.pyc
+*.pyo
+
+# Backup files
+*~
+.*.swp
+
+# OS specific files
+*.DS_Store
+
+# Repository specific ignores
+input/
+output/
